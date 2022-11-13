@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Battery Manager</string>
+    <string name="useApp">با این برنامه شما می توانید:</string>
+    <string name="Battery">مدیریت باتری</string>
+</resources>
