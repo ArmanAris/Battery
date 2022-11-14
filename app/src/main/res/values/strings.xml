@@ -2,4 +2,9 @@
     <string name="app_name">Battery Manager</string>
     <string name="useApp">با این برنامه شما می توانید:</string>
     <string name="Battery">مدیریت باتری</string>
+    <string name="status">وضعیت سلامت باتری</string>
+    <string name="voltage">ولتاژ</string>
+    <string name="tec">تکنولوژی</string>
+    <string name="plug">شارژر</string>
+    <string name="temp">دما</string>
 </resources>

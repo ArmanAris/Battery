@@ -17,11 +17,233 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@drawable/shape_const"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline10"
-        android:background="@drawable/shape_const">
+        app:layout_constraintVertical_bias="1.0">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/status"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/guideline12"
+            app:layout_constraintEnd_toStartOf="@+id/guideline16"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline15" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginEnd="5dp"
+            android:background="@color/status"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/guideline11"
+            app:layout_constraintEnd_toStartOf="@+id/guideline14"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline15" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="5dp"
+            android:background="@color/status"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/guideline11"
+            app:layout_constraintEnd_toStartOf="@+id/guideline16"
+            app:layout_constraintStart_toStartOf="@+id/guideline14" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/status"
+            android:textColor="@color/status"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guideline12"
+            app:layout_constraintEnd_toStartOf="@+id/guideline16"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="@+id/guideline15"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.426" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".25" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent=".75" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".95" />
+
+        <ImageView
+            android:id="@+id/voltageImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/voltage"
+            app:layout_constraintBottom_toTopOf="@+id/guideline11"
+            app:layout_constraintStart_toStartOf="@+id/guideline15"
+            app:layout_constraintTop_toTopOf="@+id/guideline12"
+            app:srcCompat="@drawable/voltage" />
+
+        <TextView
+            android:id="@+id/voltageText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/voltage"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/voltageImage"
+            app:layout_constraintTop_toTopOf="@+id/voltageImage" />
+
+        <TextView
+            android:id="@+id/voltageNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/voltageImage"
+            app:layout_constraintStart_toEndOf="@+id/voltageImage"
+            tools:text="5 Volt" />
+
+        <ImageView
+            android:id="@+id/tecImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/tec"
+            app:layout_constraintBottom_toTopOf="@+id/guideline11"
+            app:layout_constraintStart_toStartOf="@+id/guideline14"
+            app:layout_constraintTop_toTopOf="@+id/guideline12"
+            app:srcCompat="@drawable/tec" />
+
+        <TextView
+            android:id="@+id/tecText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/tec"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/tecImage"
+            app:layout_constraintTop_toTopOf="@+id/tecImage" />
+
+        <TextView
+            android:id="@+id/tecNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tecImage"
+            app:layout_constraintStart_toEndOf="@+id/tecImage"
+            tools:text="li-on" />
+
+        <ImageView
+            android:id="@+id/plugImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/plug"
+            app:layout_constraintBottom_toTopOf="@+id/guideline13"
+            app:layout_constraintStart_toStartOf="@+id/guideline15"
+            app:layout_constraintTop_toTopOf="@+id/guideline11"
+            app:srcCompat="@drawable/charger" />
+
+        <TextView
+            android:id="@+id/plugText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/plug"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/plugImage"
+            app:layout_constraintTop_toTopOf="@+id/plugImage" />
+
+        <TextView
+            android:id="@+id/plugNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/plugImage"
+            app:layout_constraintStart_toEndOf="@+id/plugImage"
+            tools:text="متصل" />
+
+        <ImageView
+            android:id="@+id/tempImage"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:contentDescription="@string/temp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline13"
+            app:layout_constraintStart_toStartOf="@+id/guideline14"
+            app:layout_constraintTop_toTopOf="@+id/guideline11"
+            app:srcCompat="@drawable/thermomete" />
+
+        <TextView
+            android:id="@+id/tempText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@string/temp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintStart_toEndOf="@+id/tempImage"
+            app:layout_constraintTop_toTopOf="@+id/tempImage" />
+
+        <TextView
+            android:id="@+id/tempNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tempImage"
+            app:layout_constraintStart_toEndOf="@+id/tempImage"
+            tools:text="25 C" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="@+id/guideline1"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/battery_charging" />
+        app:lottie_rawRes="@raw/chargebattery" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
@@ -101,15 +101,13 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginBottom="96dp"
         android:text="@string/useApp"
+        android:textColor="@color/white"
         android:textSize="15sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline9"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/animation_view"
-        app:layout_constraintVertical_bias="0.0"
-        android:textColor="@color/white"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
