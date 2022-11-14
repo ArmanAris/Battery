@@ -7,6 +7,7 @@ import android.content.IntentFilter
 import android.os.BatteryManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.aris.batterymanager.databinding.ActivityBatteryBinding
 import com.aris.batterymanager.databinding.ActivityMainBinding
 
@@ -20,7 +21,10 @@ class BatteryActivity : AppCompatActivity() {
         binding = ActivityBatteryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        val batteryUsage = BatteryUsage(this)
+        for (item in batteryUsage.getUsageStateList()) {
+            Log.e("7171", "$item.packageName : ${item.totalTimeInForeground}")
+        }
 
         registerReceiver(batteryInfo, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
 
@@ -30,10 +34,10 @@ class BatteryActivity : AppCompatActivity() {
         override fun onReceive(context: Context, intent: Intent) {
             intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
 
-            if (intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) == 0){
-                binding.plugNum.text ="متصل نیست"
-            }else{
-                binding.plugNum.text ="متصل است"
+            if (intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) == 0) {
+                binding.plugNum.text = "متصل نیست"
+            } else {
+                binding.plugNum.text = "متصل است"
             }
             binding.tempNum.text =
                 (intent.getIntExtra(BatteryManager.EXTRA_TEMPERATURE, 0) / 10).toString() + " C°"
