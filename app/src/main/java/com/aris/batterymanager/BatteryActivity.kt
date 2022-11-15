@@ -8,6 +8,7 @@ import android.os.BatteryManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import com.aris.batterymanager.data.model.BatteryModel
 import com.aris.batterymanager.databinding.ActivityBatteryBinding
 import kotlin.math.roundToInt
@@ -23,6 +24,15 @@ class BatteryActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         registerReceiver(batteryInfo, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+
+        binding.menu.setOnClickListener {
+            binding.drawer.openDrawer(Gravity.RIGHT)
+        }
+
+        binding.incLayout.appUsage.setOnClickListener {
+            startActivity(Intent(this, UsageBattery::class.java))
+            binding.drawer.closeDrawer(Gravity.RIGHT)
+        }
 
     }
 

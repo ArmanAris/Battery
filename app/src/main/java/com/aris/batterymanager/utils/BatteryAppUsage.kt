@@ -1,4 +1,4 @@
-package com.aris.batterymanager
+package com.aris.batterymanager.utils
 
 import android.app.usage.UsageStats
 import android.app.usage.UsageStatsManager

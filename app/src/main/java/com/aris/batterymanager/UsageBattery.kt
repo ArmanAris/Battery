@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.aris.batterymanager.utils.BatteryAppUsage
 import com.aris.batterymanager.adapter.BatteryUsageAdapter
 import com.aris.batterymanager.data.model.BatteryModel
 import kotlin.math.roundToInt
