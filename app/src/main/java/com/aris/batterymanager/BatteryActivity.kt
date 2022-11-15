@@ -24,36 +24,6 @@ class BatteryActivity : AppCompatActivity() {
 
         registerReceiver(batteryInfo, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
 
-        val batteryUsage = BatteryUsage(this)
-
-        val batteryPercentArray: MutableList<BatteryModel> = ArrayList()
-
-        for (item in batteryUsage.getUsageStateList()) {
-            if (item.totalTimeInForeground > 0) {
-                val bm = BatteryModel()
-                val usageTimeApp = item.totalTimeInForeground.toFloat()
-                val usageTimeAllApps = batteryUsage.totalTime().toFloat()
-                bm.percentUsage = (usageTimeApp / usageTimeAllApps * 100).toInt()
-                bm.packageName = item.packageName
-
-                batteryPercentArray.add(bm)
-            }
-        }
-
-        val sortList = batteryPercentArray.groupBy { it.packageName }
-            .mapValues { entry -> entry.value.sumBy { it.percentUsage } } // بعد از تبدیل به هش مپ اولی میشود کلید دومی ولیو
-            .toList()     //بعد از تبدیل از هش مپ به لیست، کلید می شود فرست و ولیو می شود سکند
-            .sortedWith(compareBy { it.second }).reversed()
-
-        for (item in sortList) {
-            // تبدیل درصد استفاده به دقیقه
-            val time = item.second.toFloat() / 100 * batteryUsage.totalTime().toFloat() / 1000 / 60
-            val hour = time / 60
-            val min = time % 60
-            Log.e("7171",
-                "${item.first} : ${item.second} % And time usage is: ${hour.roundToInt()}:${min.roundToInt()}")
-        }
-
     }
 
     private var batteryInfo: BroadcastReceiver = object : BroadcastReceiver() {

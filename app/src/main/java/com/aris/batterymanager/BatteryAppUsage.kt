@@ -1,14 +1,12 @@
 package com.aris.batterymanager
 
-import android.annotation.SuppressLint
 import android.app.usage.UsageStats
 import android.app.usage.UsageStatsManager
 import android.content.Context
 import android.content.Intent
 import android.provider.Settings
-import java.util.Calendar
 
-class BatteryUsage(private val context: Context) {
+class BatteryAppUsage(private val context: Context) {
 
     init { // اول اجرا می شود
         if (getUsageStateList().isEmpty()) {  // اگر لیست خالی بود دسترسی بده
