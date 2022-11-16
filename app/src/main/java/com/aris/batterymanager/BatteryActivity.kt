@@ -11,8 +11,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
+import androidx.core.content.ContextCompat
 import com.aris.batterymanager.data.model.BatteryModel
 import com.aris.batterymanager.databinding.ActivityBatteryBinding
+import com.aris.batterymanager.utils.Notification
 import kotlin.math.roundToInt
 
 class BatteryActivity : AppCompatActivity() {
@@ -24,6 +26,8 @@ class BatteryActivity : AppCompatActivity() {
 
         binding = ActivityBatteryBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        ContextCompat.startForegroundService(this, Intent(this, Notification::class.java))
 
         registerReceiver(batteryInfo, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
 
