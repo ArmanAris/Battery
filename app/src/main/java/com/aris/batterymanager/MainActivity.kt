@@ -21,19 +21,16 @@ class MainActivity : AppCompatActivity() {
         val textArray = arrayOf(
             "  باتری خود را قدرتمند کنید",
             "   باتری خود را ایمن کنید",
-            "باتری خود را سریعتر کنید",
-            "باتری خود را قدرتمند کنید",
-            "باتری گوشی خود را مدیریت کنید",
-            " زمانی که گوشی شما شارژ کامل شد، مطلع شوید")
+            "باتری گوشی خود را مدیریت کنید", )
 
-        for (i in 1..6) {
+        for (i in 1..3) {
             text(textArray[i - 1], (i * 1000).toLong())
         }
 
         Timer().schedule(timerTask {
             startActivity(Intent(this@MainActivity, BatteryActivity::class.java))
             finish()
-        }, 7000)
+        }, 3000)
 
     }
 
