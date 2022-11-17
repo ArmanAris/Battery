@@ -8,8 +8,9 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.os.BatteryManager
-import android.os.IBinder
+import android.media.RingtoneManager
+import android.net.Uri
+import android.os.*
 import androidx.core.app.NotificationCompat
 import com.aris.batterymanager.R
 
@@ -23,7 +24,8 @@ class Notification : Service() {  // android.app.Service
         startNotification()
 
         // صدا زدن BroadcastReceiver
-        registerReceiver(batteryInfo, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
+        registerReceiver(batteryInfo,
+            IntentFilter(Intent.ACTION_BATTERY_CHANGED)) //BroadcastReceiver
 
         return START_STICKY   // در هر حالت سرویس در حال اجرا باشد با بسته شدن نرم افزار قطع نشود
     }
@@ -35,20 +37,29 @@ class Notification : Service() {  // android.app.Service
 
     // به یک سری مسائل گوش می دهد BroadcastReceiver
     // داده ها هر لحطه که تغییر کند عوض می شود
-    private var batteryInfo: BroadcastReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
+    private var batteryInfo: BroadcastReceiver =
+        object : BroadcastReceiver() {    //BroadcastReceiver
+            override fun onReceive(context: Context, intent: Intent) {
 
-            val levelBattery = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
+                val levelBattery = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0)
 
-            var plugState = ""
-            if (intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0) == 0) {
-                plugState = "شارژر متصل نیست"
-            } else {
-                plugState = "شارژر متصل است"
+                val plug = intent.getIntExtra(BatteryManager.EXTRA_PLUGGED, 0)
+                var plugState = ""
+
+                if (plug == 0) {
+                    plugState = "شارژر متصل نیست"
+                } else {
+                    plugState = "شارژر متصل است"
+                }
+
+                if (levelBattery > 95 && plug == 1) {
+                    startAlarm()
+                    plugState = "برای سلامتی باتری بهتر است از شارژ خارج شود"
+                }
+
+                updateNotification(levelBattery, plugState)
             }
-            updateNotification(levelBattery, plugState)
         }
-    }
 
 
     // Create , Start Notification And Update
@@ -79,11 +90,21 @@ class Notification : Service() {  // android.app.Service
         manager!!.notify(NOTIFICATION_ID, notification)
     }
 
-
     companion object {
         const val CHANNEL_ID = "BatteryManagerChannel"
         const val CHANNEL_NAME = "BatteryManagerService"
         const val NOTIFICATION_ID = 1
+    }
+
+    // Add RINGTONE and Vibration
+    private fun startAlarm() {
+        val alarm: Uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        // TYPE_RINGTONE , TYPE_NOTIFICATION , TYPE_ALARM And ...
+        val ring = RingtoneManager.getRingtone(applicationContext, alarm)
+        ring.play()
+
+        val vibrator = getSystemService(VIBRATOR_SERVICE) as Vibrator
+        vibrator.vibrate(VibrationEffect.createOneShot(1500, VibrationEffect.DEFAULT_AMPLITUDE))
     }
 
 }

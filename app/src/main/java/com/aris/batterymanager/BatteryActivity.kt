@@ -9,13 +9,12 @@ import android.graphics.Color
 import android.os.BatteryManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.Gravity
 import androidx.core.content.ContextCompat
-import com.aris.batterymanager.data.model.BatteryModel
 import com.aris.batterymanager.databinding.ActivityBatteryBinding
 import com.aris.batterymanager.utils.Notification
-import kotlin.math.roundToInt
+import com.aris.batterymanager.utils.spManager
+
 
 class BatteryActivity : AppCompatActivity() {
 
@@ -23,23 +22,57 @@ class BatteryActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityBatteryBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ContextCompat.startForegroundService(this, Intent(this, Notification::class.java))
-
         registerReceiver(batteryInfo, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
 
+        drawer()
+
+
+    }
+
+    private fun startService() {
+        ContextCompat.startForegroundService(this, Intent(this, Notification::class.java))
+    }
+
+    private fun stopService() {
+        stopService(Intent(this, Notification::class.java))
+    }
+
+    @SuppressLint("RtlHardcoded")
+    private fun drawer() {
         binding.menu.setOnClickListener {
             binding.drawer.openDrawer(Gravity.RIGHT)
         }
-
         binding.incLayout.appUsage.setOnClickListener {
             startActivity(Intent(this, UsageBattery::class.java))
             binding.drawer.closeDrawer(Gravity.RIGHT)
         }
+        service()
+    }
 
+    private fun service() {
+        if (spManager.isServiceOn(this) == true) {
+            binding.incLayout.swService.isChecked = true
+            binding.incLayout.swService.text = "سرویس فعال است"
+            startService()
+        } else {
+            binding.incLayout.swService.isChecked = false
+            binding.incLayout.swService.text = "سرویس غیر فعال است"
+            stopService()
+        }
+
+        binding.incLayout.swService.setOnCheckedChangeListener { _, isChecked ->
+            spManager.setServiceState(this, isChecked)
+            if (isChecked) {
+                binding.incLayout.swService.text = "سرویس فعال است"
+                startService()
+            } else {
+                binding.incLayout.swService.text = "سرویس غیر فعال است"
+                stopService()
+            }
+        }
     }
 
     private var batteryInfo: BroadcastReceiver = object : BroadcastReceiver() {
@@ -61,9 +94,9 @@ class BatteryActivity : AppCompatActivity() {
             binding.chargeShow.text = "$levelBattery %"
             binding.circularProgressBar.setProgressWithAnimation(levelBattery.toFloat())
 
-            val health = intent.getIntExtra(BatteryManager.EXTRA_HEALTH, 0)
 
-            when (health) {
+
+            when (intent.getIntExtra(BatteryManager.EXTRA_HEALTH, 0)) {
                 BatteryManager.BATTERY_HEALTH_DEAD -> {
                     binding.txtHealth.text = "باتری شما از کار افتاده است"
                     binding.txtHealth.setTextColor(Color.parseColor("#000000"))
@@ -93,5 +126,6 @@ class BatteryActivity : AppCompatActivity() {
         }
 
     }
+
 
 }

@@ -19,15 +19,15 @@
     <TextView
         android:id="@+id/chargeShow"
         android:layout_width="wrap_content"
-        android:layout_marginTop="5dp"
         android:layout_height="wrap_content"
-        tools:text="30 %"
-        android:textStyle="bold"
+        android:layout_marginTop="16dp"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="25sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/circle3"
         app:layout_constraintStart_toStartOf="@+id/circle4"
-        app:layout_constraintTop_toTopOf="@+id/guideline100" />
+        app:layout_constraintTop_toTopOf="@+id/guideline100"
+        tools:text="30 %" />
 
     <com.mikhaellopez.circularprogressbar.CircularProgressBar
         android:id="@+id/circularProgressBar"
@@ -336,21 +336,21 @@
                 android:id="@+id/imageHealth"
                 android:layout_width="33dp"
                 android:layout_height="33dp"
-                android:layout_marginEnd="24dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/txtHealth"
+                app:layout_constraintStart_toEndOf="@+id/txtHealth"
+                app:layout_constraintTop_toTopOf="@+id/txtHealth"
                 tools:srcCompat="@drawable/charger" />
 
             <TextView
                 android:id="@+id/txtHealth"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
                 android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="@+id/imageHealth"
-                app:layout_constraintEnd_toStartOf="@+id/imageHealth"
-                app:layout_constraintTop_toTopOf="@+id/imageHealth"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="TextView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
