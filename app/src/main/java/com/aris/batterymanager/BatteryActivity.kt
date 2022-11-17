@@ -3,6 +3,7 @@ package com.aris.batterymanager
 import android.annotation.SuppressLint
 import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
@@ -10,6 +11,7 @@ import android.os.BatteryManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.aris.batterymanager.databinding.ActivityBatteryBinding
 import com.aris.batterymanager.utils.Notification
@@ -125,6 +127,21 @@ class BatteryActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun onBackPressed() {
+        val dialogBuilder = AlertDialog.Builder(this)
+            .setMessage("آبا می خواهید خارج شوید؟")
+            .setCancelable(true) //اگر روی خاج از دابالوگ و بازگشت کلیک کنیم بسته می شود
+            .setPositiveButton("بله", DialogInterface.OnClickListener { dialog, which ->
+                finish()
+            })
+            .setNegativeButton("خیر", DialogInterface.OnClickListener { dialog, which ->
+                dialog.cancel()
+            })
+        val alert = dialogBuilder.create()
+        alert.setTitle("خروج")
+        alert.show()
     }
 
 
